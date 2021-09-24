@@ -1,0 +1,17 @@
+# Para construir las imagenes: docker-compose build
+# Para ejecutar: docker-compose up -d,
+# Para detener: docker-compose stop
+version: '3.7'
+services:
+  node-project-db:
+    container_name: node-project-db
+    image: mongo:latest
+    ports: 
+    - "27017-27019:27017-27019"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: node-project-db
+    volumes: 
+        - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+#        - ./mongo-volume:/data/db
